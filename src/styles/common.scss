@@ -1,0 +1,30 @@
+body{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  width: 100%;
+  margin: 0px;
+}
+.bg-white {background-color: white;}
+.overflow-auto { overflow: auto }
+.b-b-line { border-bottom: 1px solid #efefef}
+
+.h-full {height: 100%;}
+.h-60 {height: 60px}
+
+.w-full {width: 100%;}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-v-center { align-items: center }
+.flex-h-center { justify-content: center }
