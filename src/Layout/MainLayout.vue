@@ -15,12 +15,12 @@
 </template>
 
 <script>
-    import LayoutHeader from './LayoutHeader'
-    import LayoutAside from './LayoutAside'
-    export default {
-        name: "MainLayout",
-        components:{ LayoutHeader, LayoutAside }
-    }
+import LayoutHeader from './LayoutHeader'
+import LayoutAside from './LayoutAside'
+export default {
+  name: 'MainLayout',
+  components: { LayoutHeader, LayoutAside }
+}
 </script>
 
 <style scoped>

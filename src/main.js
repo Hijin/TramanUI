@@ -5,7 +5,7 @@ import router from './router'
 import './styles/common.scss'
 
 Vue.config.productionTip = false
-Vue.use(ElementUI);
+Vue.use(ElementUI)
 
 new Vue({
   router,
