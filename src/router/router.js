@@ -8,7 +8,7 @@ export default new Router({
     {
       path: '/TramanPagination',
       name: 'TramanPagination',
-      component: () => import('@/view/TramanPagination.vue')
+      component: () => import('@/view/Pagination.vue')
     }
   ]
 })

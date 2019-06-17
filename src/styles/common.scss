@@ -6,9 +6,18 @@ body{
   width: 100%;
   margin: 0px;
 }
+#app {
+  font-family: 'Helvetica, Pingfang SC, Microsoft YaHei, STHeiti, Verdana, Arial,Tahoma, sans-serif';
+  font-size: 12px;
+}
 .bg-white {background-color: white;}
+.bg-light-gray { background-color: aliceblue}
 .overflow-auto { overflow: auto }
 .b-b-line { border-bottom: 1px solid #efefef}
+.border-default {border: 1px solid #efefef}
+.pre {
+  white-space: pre;
+}
 
 .h-full {height: 100%;}
 .h-60 {height: 60px}
@@ -28,3 +37,8 @@ body{
 }
 .flex-v-center { align-items: center }
 .flex-h-center { justify-content: center }
+
+.p-20 {padding: 20px}
+.m-t-50 {
+  margin-top: 50px;
+}

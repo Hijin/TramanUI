@@ -1,0 +1,89 @@
+/**
+*
+*  Created by  JLee on 9/6/14
+*/
+<template>
+    <div>
+        <h2 class="">Pagination 分页</h2>
+        <div class="border-default p-20 m-t-50">
+            <tr-pagination
+                    :total="100"
+                    :current-page="2"
+                    :page-size = 20
+                    @on-change="handlePageChanged"
+            >
+            </tr-pagination>
+        </div>
+        <div class="pre bg-light-gray">
+            {{codeStr}}
+        </div>
+        <el-table
+                class="m-t-50"
+                :data="tableData">
+            <el-table-column
+                    prop="param"
+                    label="参数">
+            </el-table-column>
+            <el-table-column
+                    prop="explain"
+                    label="说明">
+            </el-table-column>
+            <el-table-column
+                    prop="type"
+                    label="类型">
+            </el-table-column>
+            <el-table-column
+                    prop="defaultVal"
+                    label="默认值">
+            </el-table-column>
+        </el-table>
+    </div>
+</template>
+
+<script>
+import trPagination from '../components/TramanPagination.vue'
+export default {
+  name: 'Pagination',
+  components: { trPagination },
+  data () {
+    return {
+      tableData: [{
+        param: 'page-size',
+        explain: '分页大小',
+        type: 'number',
+        defaultVal: 10
+      }, {
+        param: 'total',
+        explain: '总共数据',
+        type: 'number',
+        defaultVal: 0
+      }, {
+        param: 'current-page',
+        explain: '初始化当前页',
+        type: 'number',
+        defaultVal: 1
+      }, {
+        param: 'on-change',
+        explain: '当前页改变触发回调函数',
+        type: 'Function(index)',
+        defaultVal: 1
+      }],
+      codeStr: ''
+    }
+  },
+  mounted: function () {
+    this.codeStr = '<tr-pagination\n' +
+      '                    :total="100"\n' +
+      '                    :current-page="2"\n' +
+      '                    :page-size = 20\n' +
+      '                    @on-change="handlePageChanged"\n' +
+      '            >\n' +
+      '         </tr-pagination>'
+  },
+  methods: {
+    handlePageChanged (page) {
+      console.log(`页码变更${page}`)
+    }
+  }
+}
+</script>
