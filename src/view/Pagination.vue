@@ -5,17 +5,20 @@
 <template>
     <div>
         <h2 class="">Pagination 分页</h2>
-        <div class="border-default p-20 m-t-50">
-            <tr-pagination
-                    :total="100"
-                    :current-page="2"
-                    :page-size = 20
-                    @on-change="handlePageChanged"
-            >
-            </tr-pagination>
-        </div>
-        <div class="pre bg-light-gray">
-            {{codeStr}}
+        <div class="shadow-hover">
+            <div class="border-default p-20 m-t-50">
+                <tr-pagination
+                        :total="100"
+                        :current-page="2"
+                        :page-size = 20
+                        @on-change="handlePageChanged"
+                >
+                </tr-pagination>
+            </div>
+            <div class="pre bg-light-gray p-20">
+                <div class="code-explain">代码示例</div>
+                {{codeStr}}
+            </div>
         </div>
         <el-table
                 class="m-t-50"
@@ -64,9 +67,9 @@ export default {
         defaultVal: 1
       }, {
         param: 'on-change',
-        explain: '当前页改变触发回调函数',
+        explain: '当前页改变触发回调函数，参数index为选中页码',
         type: 'Function(index)',
-        defaultVal: 1
+        defaultVal: '-'
       }],
       codeStr: ''
     }
@@ -78,7 +81,7 @@ export default {
       '                    :page-size = 20\n' +
       '                    @on-change="handlePageChanged"\n' +
       '            >\n' +
-      '         </tr-pagination>'
+      '           </tr-pagination>'
   },
   methods: {
     handlePageChanged (page) {

@@ -10,14 +10,35 @@ body{
   font-family: 'Helvetica, Pingfang SC, Microsoft YaHei, STHeiti, Verdana, Arial,Tahoma, sans-serif';
   font-size: 12px;
 }
+.text-14 {font-size: 14px}
 .bg-white {background-color: white;}
 .bg-light-gray { background-color: aliceblue}
+.color-default {color: #5E6D82}
 .overflow-auto { overflow: auto }
 .b-b-line { border-bottom: 1px solid #efefef}
 .border-default {border: 1px solid #efefef}
+.shadow-default {
+  box-shadow: 1px 1px 9px 0px #efefef;
+}
 .pre {
   white-space: pre;
 }
+
+.shadow-hover:hover {
+  @extend .shadow-default;
+}
+
+.code-explain {
+  height: 50px;
+  line-height: 50px;
+  background: white;
+  padding-left: 20px;
+  border-radius: 4px;
+  @extend .color-default;
+  @extend .text-14;
+}
+
+
 
 .h-full {height: 100%;}
 .h-60 {height: 60px}
@@ -32,13 +53,10 @@ body{
   display: flex;
   flex-direction: column;
 }
-.flex-1 {
-  flex: 1;
-}
+.flex-1 {flex: 1;}
 .flex-v-center { align-items: center }
 .flex-h-center { justify-content: center }
 
 .p-20 {padding: 20px}
-.m-t-50 {
-  margin-top: 50px;
-}
+.m-t-20 {margin-top: 20px;}
+.m-t-50 {margin-top: 50px;}

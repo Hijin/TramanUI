@@ -9,6 +9,10 @@ export default new Router({
       path: '/TramanPagination',
       name: 'TramanPagination',
       component: () => import('@/view/Pagination.vue')
+    }, {
+      path: '/CheckPop',
+      name: 'CheckPop',
+      component: () => import('@/view/CheckPop.vue')
     }
   ]
 })
