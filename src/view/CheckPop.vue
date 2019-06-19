@@ -65,10 +65,8 @@
 </template>
 
 <script>
-import trCheckPop from '../components/TramanCheckPop'
 export default {
   name: 'CheckPop',
-  components: { trCheckPop },
   data () {
     return {
       checkDataOne: [],

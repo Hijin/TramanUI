@@ -1,7 +1,9 @@
 {
   "name": "ui-traman",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.4",
+  "private": false,
+  "main": "packages/index.js",
+  "author": "陈南进",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
@@ -29,6 +31,9 @@
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.10"
   },
+  "files": [
+    "packages"
+  ],
   "postcss": {
     "plugins": {
       "autoprefixer": {}

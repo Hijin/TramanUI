@@ -52,7 +52,7 @@
 
 <script>
 export default {
-  name: 'TramanCheckPop',
+  name: 'trCheckPop',
   props: {
     title: {
       type: String,

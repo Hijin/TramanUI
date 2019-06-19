@@ -5,6 +5,9 @@
 
 const menu = [
   {
+    title: '快速上手',
+    path: '/Instructions'
+  }, {
     title: 'Pagination 分页',
     path: '/TramanPagination'
   }, {

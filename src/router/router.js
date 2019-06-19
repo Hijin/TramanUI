@@ -6,6 +6,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
+      path: '/Instructions',
+      name: 'TramanPagination',
+      component: () => import('@/view/Instructions.vue')
+    }, {
       path: '/TramanPagination',
       name: 'TramanPagination',
       component: () => import('@/view/Pagination.vue')

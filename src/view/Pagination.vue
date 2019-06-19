@@ -44,10 +44,8 @@
 </template>
 
 <script>
-import trPagination from '../components/TramanPagination.vue'
 export default {
   name: 'Pagination',
-  components: { trPagination },
   data () {
     return {
       tableData: [{
