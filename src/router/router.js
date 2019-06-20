@@ -7,7 +7,7 @@ export default new Router({
   routes: [
     {
       path: '/Instructions',
-      name: 'TramanPagination',
+      name: 'Instructions',
       component: () => import('@/view/Instructions.vue')
     }, {
       path: '/TramanPagination',

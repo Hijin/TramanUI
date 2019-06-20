@@ -18,9 +18,15 @@
                 >
                 </tr-check-pop>
             </div>
-            <div class="pre bg-light-gray p-20">
-                <div class="code-explain">代码示例，当传的  data  数据结构存在孩子节点数据  propsData  时，渲染为分组</div>
-                {{codeStrOne}}
+            <div class="pre bg-light-gray">
+                <div class="code-str" :class="{'hidden-code-str':!showCodeOne}">
+                    <div class="code-explain">代码示例，当传的  data  数据结构存在孩子节点数据  propsData  时，渲染为分组</div>
+                    {{codeStrOne}}
+                </div>
+            </div>
+            <div class="code-str-header" @click="showCodeOne=!showCodeOne">
+                <i class="el-icon-caret-bottom" :class="{'show-code-direction': showCodeOne}"></i>
+                <span class="m-l-10">{{showCodeOne?'隐藏代码':'显示代码'}}</span>
             </div>
         </div>
         <h3 class="m-t-50">普通组选择</h3>
@@ -36,9 +42,15 @@
                 >
                 </tr-check-pop>
             </div>
-            <div class="pre bg-light-gray p-20">
-                <div class="code-explain">代码示例， 当传的  data  数据结构不存在孩子节点数据  propsData  时，渲染为普通选择</div>
-                {{codeStrTwo}}
+            <div class="pre bg-light-gray">
+                <div class="code-str" :class="{'hidden-code-str':!showCodeTwo}">
+                    <div class="code-explain">代码示例， 当传的  data  数据结构不存在孩子节点数据  propsData  时，渲染为普通选择</div>
+                    {{codeStrTwo}}
+                </div>
+            </div>
+            <div class="code-str-header" @click="showCodeTwo=!showCodeTwo">
+                <i class="el-icon-caret-bottom" :class="{'show-code-direction': showCodeTwo}"></i>
+                <span class="m-l-10">{{showCodeTwo?'隐藏代码':'显示代码'}}</span>
             </div>
         </div>
         <el-table
@@ -103,7 +115,9 @@ export default {
         defaultVal: '-'
       }],
       codeStrOne: '',
-      codeStrTwo: ''
+      codeStrTwo: '',
+      showCodeOne: false,
+      showCodeTwo: false
     }
   },
   mounted: function () {

@@ -15,9 +15,15 @@
                 >
                 </tr-pagination>
             </div>
-            <div class="pre bg-light-gray p-20">
-                <div class="code-explain">代码示例</div>
-                {{codeStr}}
+            <div class="pre bg-light-gray">
+                <div class="code-str" :class="{'hidden-code-str':!showCode}">
+                    <div class="code-explain">代码示例</div>
+                    {{codeStr}}
+                </div>
+            </div>
+            <div class="code-str-header" @click="showCode=!showCode">
+                <i class="el-icon-caret-bottom" :class="{'show-code-direction': showCode}"></i>
+                <span class="m-l-10">{{showCode?'隐藏代码':'显示代码'}}</span>
             </div>
         </div>
         <el-table
@@ -69,7 +75,8 @@ export default {
         type: 'Function(index)',
         defaultVal: '-'
       }],
-      codeStr: ''
+      codeStr: '',
+      showCode: false
     }
   },
   mounted: function () {

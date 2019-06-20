@@ -123,7 +123,7 @@ export default {
     }
     /deep/ li.active{
         background: #2589FF;
-        color: white;
+        color: white !important;
     }
     /deep/ li.active + li {
         border-left: 1px solid #E3E2E5;
@@ -134,8 +134,8 @@ export default {
         border-radius: 4px;
         width: 30px;
         min-width: 30px;
-        padding: 0px;
-        margin-left: 10px;
+        padding: 0px !important;
+        margin-left: 10px !important;
     }
     /deep/ .el-input-group__append {
         padding: 0px;

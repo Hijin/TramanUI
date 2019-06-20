@@ -10,6 +10,8 @@ body{
   font-family: 'Helvetica, Pingfang SC, Microsoft YaHei, STHeiti, Verdana, Arial,Tahoma, sans-serif';
   font-size: 12px;
 }
+.pos-rlt {position: relative}
+.pos-abs {position: absolute}
 .text-14 {font-size: 14px}
 .bg-white {background-color: white;}
 .bg-light-gray { background-color: aliceblue}
@@ -29,7 +31,28 @@ body{
   @extend .shadow-default;
 }
 
+.code-str {
+  max-height: 2000px;
+  transition: max-height 1s ease-in;
+  overflow: hidden;
+  &.hidden-code-str {
+    max-height: 0px;
+    transition: max-height 1s ease-out;
+  }
+}
+.code-str-header {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  background-color: white;
+  @extend .border-default;
+  &:hover {
+    color: #409eff;
+  }
+}
+
 .code-explain {
+  margin:20px 20px 0px 20px;
   height: 50px;
   line-height: 50px;
   background: white;
@@ -37,6 +60,11 @@ body{
   border-radius: 4px;
   @extend .color-default;
   @extend .text-14;
+}
+
+.show-code-direction {
+  transition-duration: 0.5s;
+  transform: rotate(180deg);
 }
 
 
@@ -59,5 +87,6 @@ body{
 .flex-h-center { justify-content: center }
 
 .p-20 {padding: 20px}
+.m-l-10 {margin-left: 10px}
 .m-t-20 {margin-top: 20px;}
 .m-t-50 {margin-top: 50px;}
