@@ -3,12 +3,15 @@ import ElementUI from 'element-ui'
 import TramanUI from '../packages/index'
 import App from './App.vue'
 import router from './router/router'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/github.css'
 import './styles/common.scss'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(TramanUI)
+Vue.use(hljs)
 
 new Vue({
   router,

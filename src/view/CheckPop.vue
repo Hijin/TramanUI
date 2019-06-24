@@ -18,10 +18,10 @@
                 >
                 </tr-check-pop>
             </div>
-            <div class="pre bg-light-gray">
+            <div class="bg-light-gray">
                 <div class="code-str" :class="{'hidden-code-str':!showCodeOne}">
                     <div class="code-explain">代码示例，当传的  data  数据结构存在孩子节点数据  propsData  时，渲染为分组</div>
-                    {{codeStrOne}}
+                    <pre><code class="html line-height-2">{{codeStrOne}} </code></pre>
                 </div>
             </div>
             <div class="code-str-header" @click="showCodeOne=!showCodeOne">
@@ -45,7 +45,7 @@
             <div class="pre bg-light-gray">
                 <div class="code-str" :class="{'hidden-code-str':!showCodeTwo}">
                     <div class="code-explain">代码示例， 当传的  data  数据结构不存在孩子节点数据  propsData  时，渲染为普通选择</div>
-                    {{codeStrTwo}}
+                    <pre><code class="html line-height-2">{{codeStrTwo}} </code></pre>
                 </div>
             </div>
             <div class="code-str-header" @click="showCodeTwo=!showCodeTwo">
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import hljs from 'highlight.js'
 export default {
   name: 'CheckPop',
   data () {
@@ -114,119 +115,101 @@ export default {
         type: 'Function(data)',
         defaultVal: '-'
       }],
-      codeStrOne: '',
-      codeStrTwo: '',
       showCodeOne: false,
       showCodeTwo: false
     }
   },
+  computed: {
+    codeStrOne: function () {
+      return `
+      <template>
+        <tr-check-pop
+          title="自定义列表"
+          :data="checkDataOne"
+          :width="500"
+          :column="3"
+          save-key="saveTabOne"
+          @on-confirm="checkConfirm"
+        >
+        </tr-check-pop>
+      <template>
+      
+      <script>
+        export default {
+            data () {
+              return {
+                checkDataOne: [{
+                  "title": "分组0",
+                  "key": "0",
+                  "propsData": [{
+                      "label": "选项0长字段属性",
+                      "key": "0-0",
+                      "checked": false
+                    },{
+                      "label": "选项1",
+                      "key": "0-1",
+                      "checked": false
+                    }]
+                  },{
+                  "title": "分组1",
+                  "key": "1",
+                  "propsData": [{
+                      "label": "选项0长字段属性",
+                      "key": "1-0",
+                      "checked": false
+                    },{
+                      "label": "选项1",
+                      "key": "1-1",
+                      "checked": false
+                    }]
+                  }]
+            };
+          }
+        }
+      </` + 'script>'
+    },
+    codeStrTwo: function () {
+      return `
+      <template>
+        <tr-check-pop
+          title="自定义列表"
+          :data="checkDataOne"
+          :width="500"
+          :column="3"
+          save-key="saveTabOne"
+          @on-confirm="checkConfirm"
+        >
+        </tr-check-pop>
+      </template>
+      
+      <script>
+        export default {
+            data () {
+              return {
+                checkDataTwo: [{
+                  "label": "选项0长字段属性",
+                  "key": "0",
+                  "disabled": true
+                  },{
+                  "label": "选项1",
+                  "key": "1",
+                  "disabled": false
+                  },{
+                  "label": "选项2",
+                  "key": "2",
+                  "disabled": false
+                  }]
+            };
+          }
+        }
+      </` + 'script>'
+    }
+  },
   mounted: function () {
     this.initCheckData()
-    this.codeStrOne = '<tr-check-pop\n' +
-      '                        title="自定义列表"\n' +
-      '                        :data="checkDataOne"\n' +
-      '                        :width="500"\n' +
-      '                        :column="3"\n' +
-      '                        save-key="saveTabOne"\n' +
-      '                        @on-confirm="checkConfirm"\n' +
-      '              >\n' +
-      '              </tr-check-pop>\n' +
-      '\n' +
-      '\n' +
-      'checkDataOne:\n' +
-      '[\n' +
-      '  {\n' +
-      '    "title": "分组0",\n' +
-      '    "key": "0",\n' +
-      '    "propsData": [\n' +
-      '      {\n' +
-      '        "label": "选项0长字段属性",\n' +
-      '        "key": "0-0",\n' +
-      '        "checked": false\n' +
-      '      },\n' +
-      '      {\n' +
-      '        "label": "选项1",\n' +
-      '        "key": "0-1",\n' +
-      '        "checked": false\n' +
-      '      },\n' +
-      '      {\n' +
-      '        "label": "选项2长字段属性",\n' +
-      '        "key": "0-2",\n' +
-      '        "checked": false\n' +
-      '      },\n' +
-      '      {\n' +
-      '        "label": "选项3",\n' +
-      '        "key": "0-3",\n' +
-      '        "checked": false\n' +
-      '      }\n' +
-      '    ]\n' +
-      '  },\n' +
-      '  {\n' +
-      '    "title": "分组1",\n' +
-      '    "key": "1",\n' +
-      '    "propsData": [\n' +
-      '      {\n' +
-      '        "label": "选项0长字段属性",\n' +
-      '        "key": "1-0",\n' +
-      '        "checked": false\n' +
-      '      },\n' +
-      '      {\n' +
-      '        "label": "选项1",\n' +
-      '        "key": "1-1",\n' +
-      '        "checked": false\n' +
-      '      },\n' +
-      '      {\n' +
-      '        "label": "选项2长字段属性",\n' +
-      '        "key": "1-2",\n' +
-      '        "checked": false\n' +
-      '      },\n' +
-      '      {\n' +
-      '        "label": "选项3",\n' +
-      '        "key": "1-3",\n' +
-      '        "checked": false\n' +
-      '      }\n' +
-      '    ]\n' +
-      '  }\n' +
-      ']'
-    this.codeStrTwo = '<tr-check-pop\n' +
-      '                        title="自定义列表"\n' +
-      '                        :data="checkDataTwo"\n' +
-      '                        :width="500"\n' +
-      '                        :column="3"\n' +
-      '                        save-key="saveTabTwo"\n' +
-      '                        @on-confirm="checkConfirm"\n' +
-      '                >\n' +
-      '                </tr-check-pop>\n' +
-      '\n' +
-      '\n' +
-      'checkDataTwo:' +
-      '[\n' +
-      '  {\n' +
-      '    "label": "选项0长字段属性",\n' +
-      '    "key": "0",\n' +
-      '    "disabled": true\n' +
-      '  },\n' +
-      '  {\n' +
-      '    "label": "选项1",\n' +
-      '    "key": "1",\n' +
-      '    "disabled": false\n' +
-      '  },\n' +
-      '  {\n' +
-      '    "label": "选项2长字段属性",\n' +
-      '    "key": "2",\n' +
-      '    "disabled": true\n' +
-      '  },\n' +
-      '  {\n' +
-      '    "label": "选项3",\n' +
-      '    "key": "3",\n' +
-      '    "disabled": false\n' +
-      '  },\n' +
-      '  {\n' +
-      '    "label": "选项4长字段属性",\n' +
-      '    "key": "4",\n' +
-      '    "disabled": true\n' +
-      '  }\n' +
-      ']'
+    document.querySelectorAll('pre code').forEach((block) => {
+      hljs.highlightBlock(block)
+    })
   },
   methods: {
     initCheckData: function () {

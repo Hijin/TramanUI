@@ -14,7 +14,7 @@ body{
 .pos-abs {position: absolute}
 .text-14 {font-size: 14px}
 .bg-white {background-color: white;}
-.bg-light-gray { background-color: aliceblue}
+.bg-light-gray { background-color: #f8f8f8}
 .color-default {color: #5E6D82}
 .color-blue {color: #409eff}
 .overflow-auto { overflow: auto }
@@ -26,6 +26,7 @@ body{
 .pre {
   white-space: pre;
 }
+.line-height-2 {line-height: 2;}
 
 .shadow-hover:hover {
   @extend .shadow-default;

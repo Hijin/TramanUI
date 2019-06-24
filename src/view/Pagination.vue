@@ -15,10 +15,10 @@
                 >
                 </tr-pagination>
             </div>
-            <div class="pre bg-light-gray">
+            <div class="bg-light-gray">
                 <div class="code-str" :class="{'hidden-code-str':!showCode}">
                     <div class="code-explain">代码示例</div>
-                    {{codeStr}}
+                    <pre><code class="html line-height-2">{{codeStr}} </code></pre>
                 </div>
             </div>
             <div class="code-str-header" @click="showCode=!showCode">
@@ -75,18 +75,24 @@ export default {
         type: 'Function(index)',
         defaultVal: '-'
       }],
-      codeStr: '',
       showCode: false
     }
   },
+  computed: {
+    codeStr: function () {
+      return `
+      <tr-pagination 
+        :total="100"
+        :current-page="2"
+        :page-size = 20
+        @on-change="handlePageChanged">
+      </tr-pagination>`
+    }
+  },
   mounted: function () {
-    this.codeStr = '<tr-pagination\n' +
-      '                    :total="100"\n' +
-      '                    :current-page="2"\n' +
-      '                    :page-size = 20\n' +
-      '                    @on-change="handlePageChanged"\n' +
-      '            >\n' +
-      '           </tr-pagination>'
+    // document.querySelectorAll('pre code').forEach((block) => {
+    //   hljs.highlightBlock(block)
+    // })
   },
   methods: {
     handlePageChanged (page) {
