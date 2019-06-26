@@ -77,7 +77,6 @@
 </template>
 
 <script>
-import hljs from 'highlight.js'
 export default {
   name: 'CheckPop',
   data () {
@@ -208,7 +207,7 @@ export default {
   mounted: function () {
     this.initCheckData()
     document.querySelectorAll('pre code').forEach((block) => {
-      hljs.highlightBlock(block)
+      this.$hljs.highlightBlock(block)
     })
   },
   methods: {

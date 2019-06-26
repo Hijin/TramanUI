@@ -9,9 +9,9 @@ import './styles/common.scss'
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
+Vue.prototype.$hljs = hljs
 Vue.use(ElementUI)
 Vue.use(TramanUI)
-Vue.use(hljs)
 
 new Vue({
   router,

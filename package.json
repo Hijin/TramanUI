@@ -1,12 +1,15 @@
 {
   "name": "ui-traman",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "main": "packages/index.js",
   "author": "陈南进",
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
+    "depoly:dev": "npm run build && npm run push:dev",
+    "push:dev": "git push http://nanjian.chen@stash.weimob.com/scm/wmhval/ultraman.git master",
+    "push:git": "git push -u https://github.com/Hijin/TramanUI.git master",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

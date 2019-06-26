@@ -90,9 +90,9 @@ export default {
     }
   },
   mounted: function () {
-    // document.querySelectorAll('pre code').forEach((block) => {
-    //   hljs.highlightBlock(block)
-    // })
+    document.querySelectorAll('pre code').forEach((block) => {
+      this.$hljs.highlightBlock(block)
+    })
   },
   methods: {
     handlePageChanged (page) {

@@ -21,8 +21,15 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 
-export default {
+// 支持解构引用
+export {
   install,
   trCheckPop,
   trPagination
+}
+
+// 支持全部引用
+export default {
+  install,
+  ...components
 }

@@ -7,6 +7,7 @@ export default new Router({
   routes: [
     {
       path: '/Instructions',
+      alias: '',
       name: 'Instructions',
       component: () => import('@/view/Instructions.vue')
     }, {

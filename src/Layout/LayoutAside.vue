@@ -26,6 +26,9 @@ export default {
   watch: {
     '$route': function (newVal, oldVal) {
       this.defaultActivePath = newVal.fullPath
+      if (this.defaultActivePath === '/') {
+        this.defaultActivePath = '/Instructions'
+      }
     }
   }
 }
