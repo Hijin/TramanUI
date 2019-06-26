@@ -7,7 +7,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
-    "depoly:dev": "npm run build && npm run push:dev",
+    "deploy:dev": "npm run build && npm run push:dev",
     "push:dev": "git push http://nanjian.chen@stash.weimob.com/scm/wmhval/ultraman.git master",
     "push:git": "git push -u https://github.com/Hijin/TramanUI.git master",
     "lint": "vue-cli-service lint"
