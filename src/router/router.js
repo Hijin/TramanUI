@@ -18,6 +18,14 @@ export default new Router({
       path: '/CheckPop',
       name: 'CheckPop',
       component: () => import('@/view/CheckPop.vue')
+    }, {
+      path: '/Cascader',
+      name: 'Cascader',
+      component: () => import('@/view/Cascader.vue')
+    }, {
+      path: '/Select',
+      name: 'Select',
+      component: () => import('@/view/Select.vue')
     }
   ]
 })

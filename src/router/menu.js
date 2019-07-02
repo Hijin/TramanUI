@@ -13,6 +13,12 @@ const menu = [
   }, {
     title: 'CheckPop 弹框选择',
     path: '/CheckPop'
+  }, {
+    title: 'Cascader 级联选择器',
+    path: '/Cascader'
+  }, {
+    title: 'Select 选择器',
+    path: '/Select'
   }
 ]
 
