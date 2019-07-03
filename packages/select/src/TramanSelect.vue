@@ -12,14 +12,25 @@
                 :collapse-tags="multiple"
                 @remove-tag="removeTagAction"
                 @clear="clearTagAction"
-        @change="selectChanged">
+                @change="selectChanged">
+            <el-input
+                    v-if="searchable"
+                    clearable
+                    v-model="searchInput"
+                    class="tr-select-search-input"
+                    :placeholder="searchPlaceholder"
+                    prefix-icon="el-icon-search"
+            >
+            </el-input>
             <el-option
                     class="tr-select-option"
                     v-for="item in displayData"
                     :key="item[keyAttri]"
                     :label="item[labelAttri]"
                     :value="item[valueAttri]"
-                    :disabled="item[disabledAttri]">
+                    :disabled="item[disabledAttri]"
+                    v-show="!item.hiddened"
+                    ref="selectOption">
                 <div v-if="multiple" class="option-item">
                     <el-checkbox
                             class="option-item-checkbox"
@@ -30,6 +41,23 @@
                     </el-checkbox>
                 </div>
             </el-option>
+            <div v-if="createOptionable">
+                <div class="tr-select-create" @mouseenter="mouseoverCreateOptionAction" v-show="!showCreateOptionInput" @click="createOptionInputShowed">
+                    <i class="el-icon-plus"></i>
+                    <span>创建新选项</span>
+                </div>
+                <el-input
+                        ref="createOptionInputRef"
+                        v-model="createOptionInput"
+                        placeholder="请输入创建选项"
+                        class="tr-select-create-input"
+                        @blur="cancelCreateOption"
+                        @change="commitCreateOption"
+                        v-show="showCreateOptionInput"
+                        :disabled="loadingCreateOption">
+                    <i class="el-icon-loading tr-create-option-input-suffix" slot="suffix" v-show="loadingCreateOption"></i>
+                </el-input>
+            </div>
         </el-select>
     </div>
 </template>
@@ -69,15 +97,36 @@ export default {
     disabledAttri: {
       type: String,
       default: 'disabled'
+    },
+    searchable: {
+      type: Boolean,
+      default: false
+    },
+    searchPlaceholder: {
+      type: String,
+      default: '请输入搜索内容'
+    },
+    createOptionable: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      selectVal: []
+      selectVal: [],
+      searchInput: '',
+      cancelHoverClass: false,
+      createOptionInput: '',
+      showCreateOptionInput: false,
+      loadingCreateOption: false
     }
   },
   computed: {
     displayData: function () {
+      // eslint-disable-next-line
+      this.loadingCreateOption = false
+      // eslint-disable-next-line
+      this.showCreateOptionInput = false
       return JSON.parse(JSON.stringify(this.optionData))
     }
   },
@@ -113,6 +162,37 @@ export default {
       })
       this.selectVal = []
       this.$emit('on-change', this.selectVal)
+    },
+    mouseoverCreateOptionAction: function () {
+      var selectOptionEl = document.getElementsByClassName('tr-select-option')
+      for (var index = 0; index < selectOptionEl.length; index++) {
+        selectOptionEl[index].classList.remove('hover')
+      }
+    },
+    createOptionInputShowed: function () {
+      this.showCreateOptionInput = true
+      setTimeout(() => {
+        this.$refs.createOptionInputRef.focus()
+      })
+    },
+    commitCreateOption: function () {
+      if (this.createOptionInput && this.createOptionInput.trim().length > 0) {
+        this.loadingCreateOption = true
+        this.$emit('on-create-option', this.createOptionInput)
+      }
+    },
+    cancelCreateOption: function () {
+      if (!this.createOptionInput || this.createOptionInput.trim().length === 0) {
+        this.loadingCreateOption = false
+        this.showCreateOptionInput = false
+      }
+    }
+  },
+  watch: {
+    searchInput: function (newVal, oldVal) {
+      this.displayData.forEach(item => {
+        item.hiddened = item[this.labelAttri].indexOf(newVal) < 0
+      })
     }
   }
 }
@@ -122,17 +202,42 @@ export default {
     .option-item {
         width: 100%;
     }
-
     .option-item-checkbox {
         width: 100%;
+        font-size: 12px !important;
     }
     .tr-select-option {
         font-size: 12px !important;
+        padding: 0 10px !important;
         color: #595961 !important;
         &.selected {
             font-weight: bold;
             color: #303030 !important;
         }
+    }
+    .tr-select-option-no-hover {
+        background-color: white !important;
+    }
+    .tr-select-create {
+        font-size: 12px;
+        color: #2589FF;
+        height: 34px;
+        line-height: 34px;
+        padding: 0px 10px;
+        cursor: pointer;
+        i {
+            margin-right: 5px;
+        }
+        &:hover {
+            background-color: #F5F7FA;
+        }
+    }
+    .tr-create-option-input-suffix{
+        line-height: 30px;
+    }
+    /deep/ .el-checkbox__input.is-checked+.el-checkbox__label {
+        color: #595961;
+        font-size: 12px;
     }
     /deep/ .el-input__inner {
         font-size: 12px;
@@ -141,5 +246,13 @@ export default {
     }
     /deep/ .el-input__icon {
         line-height: 30px;
+    }
+</style>
+<style lang="scss">
+    .tr-select-search-input .el-input__inner, .tr-select-create-input .el-input__inner{
+        border: none;
+    }
+    .tr-select-create-input .el-input__inner {
+        background-color: #F5F7FA;
     }
 </style>
