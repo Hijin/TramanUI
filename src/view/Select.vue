@@ -80,7 +80,7 @@
             </div>
             <div class="bg-light-gray">
                 <div class="code-str" :class="{'hidden-code-str':!showCodeFour}">
-                    <div class="code-explain">代码示例, 设置<span class="code-line">createOptionable</span> 为<span class="code-line">true</span>时，可以创建并选中选项中不存在的条目，通过<span class="code-line">on-create-option</span>方法捕获创建事件，更新select数据选项</div>
+                    <div class="code-explain">代码示例, 设置<span class="code-line">createOptionable</span> 为<span class="code-line">true</span>时，可以创建选项中不存在的条目，通过<span class="code-line">on-create-option</span>方法捕获创建事件，更新select数据选项</div>
                     <pre><code class="html line-height-2">{{codeStrFour}} </code></pre>
                 </div>
             </div>
