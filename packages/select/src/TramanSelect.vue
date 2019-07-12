@@ -247,6 +247,9 @@ export default {
     /deep/ .el-input__icon {
         line-height: 30px;
     }
+    /deep/ .el-select{
+        width: 100%;
+    }
 </style>
 <style lang="scss">
     .tr-select-search-input .el-input__inner, .tr-select-create-input .el-input__inner{

@@ -18,7 +18,7 @@
         </div>
         <div class="m-t-50">
             <h2>TramanUI 引入</h2>
-            <div class="m-t-20 color-default text-14">加入TramanUI依赖 <span class="code-line">install ui-traman</span>, 源码地址github：<a href="https://github.com/Hijin/TramanUI.git" target="_blank" class="color-blue">https://github.com/Hijin/TramanUI.git</a></div>
+            <div class="m-t-20 color-default text-14">加入TramanUI依赖 <span class="code-line">npm install ui-traman</span>, 源码地址github：<a href="https://github.com/Hijin/TramanUI.git" target="_blank" class="color-blue">https://github.com/Hijin/TramanUI.git</a></div>
             <div class="m-t-20 color-default text-14 p-20 bg-light-gray pre">
                 import Vue from 'vue'
                 import TramanUI from 'ui-traman'
