@@ -10,6 +10,7 @@
                 :clearable="clearable"
                 :multiple="multiple"
                 :collapse-tags="multiple"
+                :loading="loading"
                 @remove-tag="removeTagAction"
                 @clear="clearTagAction"
                 @change="selectChanged">
@@ -66,6 +67,10 @@
 export default {
   name: 'trSelect',
   props: {
+    value: {
+      type: [String, Number, Array],
+      default: ''
+    },
     placeholder: {
       type: String,
       default: '请选择'
@@ -109,11 +114,15 @@ export default {
     createOptionable: {
       type: Boolean,
       default: false
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   },
   data () {
     return {
-      selectVal: [],
+      selectVal: this.value,
       searchInput: '',
       cancelHoverClass: false,
       createOptionInput: '',
@@ -127,7 +136,16 @@ export default {
       this.loadingCreateOption = false
       // eslint-disable-next-line
       this.showCreateOptionInput = false
-      return JSON.parse(JSON.stringify(this.optionData))
+      var data = JSON.parse(JSON.stringify(this.optionData))
+      if (this.multiple) {
+        var selData = data.filter(item => {
+          return this.value.indexOf(item[this.valueAttri]) >= 0
+        })
+        selData.forEach(item => {
+          item.checked = true
+        })
+      }
+      return data
     }
   },
   methods: {
@@ -135,6 +153,7 @@ export default {
       // 如果是多选模式，由checkBox事件触发
       if (this.multiple) return
       this.$emit('on-change', this.selectVal)
+      this.$emit('input', this.selectVal)
     },
     checkedOption: function (item) {
       var checkedData = this.displayData.filter((data) => {
@@ -144,6 +163,7 @@ export default {
         return data[this.valueAttri]
       })
       this.$emit('on-change', this.selectVal)
+      this.$emit('input', this.selectVal)
     },
     removeTagAction: function (data) {
       var removeTag = this.displayData.filter((item) => {
@@ -162,6 +182,7 @@ export default {
       })
       this.selectVal = []
       this.$emit('on-change', this.selectVal)
+      this.$emit('input', this.selectVal)
     },
     mouseoverCreateOptionAction: function () {
       var selectOptionEl = document.getElementsByClassName('tr-select-option')
@@ -193,6 +214,9 @@ export default {
       this.displayData.forEach(item => {
         item.hiddened = item[this.labelAttri].indexOf(newVal) < 0
       })
+    },
+    value (newVal) {
+      this.selectVal = newVal
     }
   }
 }
@@ -235,9 +259,13 @@ export default {
     .tr-create-option-input-suffix{
         line-height: 30px;
     }
-    /deep/ .el-checkbox__input.is-checked+.el-checkbox__label {
+    /deep/ .el-checkbox__input+.el-checkbox__label {
         color: #595961;
         font-size: 12px;
+    }
+    /deep/ .el-checkbox__input.is-checked+.el-checkbox__label {
+        color: #303030;
+        font-weight: bold;
     }
     /deep/ .el-input__inner {
         font-size: 12px;
@@ -247,9 +275,9 @@ export default {
     /deep/ .el-input__icon {
         line-height: 30px;
     }
-    /deep/ .el-select{
-        width: 100%;
-    }
+  /deep/ .el-select{
+    width: 100%;
+  }
 </style>
 <style lang="scss">
     .tr-select-search-input .el-input__inner, .tr-select-create-input .el-input__inner{

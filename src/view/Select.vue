@@ -10,6 +10,7 @@
         <div class="shadow-hover m-t-20">
             <div class="border-default p-20 m-t-20">
                 <tr-select
+                        class="w-150"
                         :option-data="options"
                         @on-change="selectChanged">
                 </tr-select>
@@ -30,6 +31,8 @@
         <div class="shadow-hover m-t-20">
             <div class="border-default p-20 m-t-20">
                 <tr-select
+                        class="w-150"
+                        v-model="selectVal"
                         :option-data="options"
                         :multiple="true"
                         @on-change="selectChanged">
@@ -51,6 +54,7 @@
         <div class="shadow-hover m-t-20">
             <div class="border-default p-20 m-t-20">
                 <tr-select
+                        class="w-150"
                         :option-data="options"
                         searchable
                         @on-change="selectChanged">
@@ -72,6 +76,7 @@
         <div class="shadow-hover m-t-20">
             <div class="border-default p-20 m-t-20">
                 <tr-select
+                        class="w-150"
                         :option-data="options"
                         createOptionable
                         @on-change="selectChanged"
@@ -89,6 +94,44 @@
                 <span class="m-l-10">{{showCodeFour?'隐藏代码':'显示代码'}}</span>
             </div>
         </div>
+        <h3 class="m-t-50">Select Attributes</h3>
+        <el-table
+                class="m-t-20"
+                :data="tableData">
+            <el-table-column
+                    prop="param"
+                    label="参数">
+            </el-table-column>
+            <el-table-column
+                    prop="explain"
+                    label="说明">
+            </el-table-column>
+            <el-table-column
+                    prop="type"
+                    label="类型">
+            </el-table-column>
+            <el-table-column
+                    prop="defaultVal"
+                    label="默认值">
+            </el-table-column>
+        </el-table>
+        <h3 class="m-t-50">Select Events</h3>
+        <el-table
+                class="m-t-20"
+                :data="tableDataEvents">
+            <el-table-column
+                    prop="eventName"
+                    label="事件名称">
+            </el-table-column>
+            <el-table-column
+                    prop="explain"
+                    label="说明">
+            </el-table-column>
+            <el-table-column
+                    prop="returnParam"
+                    label="回调参数">
+            </el-table-column>
+        </el-table>
     </div>
 </template>
 
@@ -107,10 +150,91 @@ export default {
         label: '选项3',
         value: 3
       }],
+      selectVal: [1, 3],
       showCodeOne: false,
       showCodeTwo: false,
       showCodeThree: false,
-      showCodeFour: false
+      showCodeFour: false,
+      tableData: [{
+        param: 'value/v-model',
+        explain: '默认选择值',
+        type: 'String, Number, Array',
+        defaultVal: '-'
+      }, {
+        param: 'placeholder',
+        explain: '占位符',
+        type: 'String',
+        defaultVal: '请选择'
+      }, {
+        param: 'clearable',
+        explain: '是否可以清空选项',
+        type: 'boolean',
+        defaultVal: 'false'
+      }, {
+        param: 'multiple',
+        explain: '是否多选',
+        type: 'boolean',
+        defaultVal: 'false'
+      }, {
+        param: 'optionData',
+        explain: '选项数据',
+        type: 'Array',
+        defaultVal: '[]'
+      }, {
+        param: 'placeholder',
+        explain: '没有选择值时填充文案',
+        type: 'String',
+        defaultVal: '请选择'
+      }, {
+        param: 'keyAttri',
+        explain: 'key属性字段名',
+        type: 'String',
+        defaultVal: 'value'
+      }, {
+        param: 'labelAttri',
+        explain: 'label属性字段名',
+        type: 'String',
+        defaultVal: 'label'
+      }, {
+        param: 'valueAttri',
+        explain: 'value属性字段名',
+        type: 'String',
+        defaultVal: 'value'
+      }, {
+        param: 'disabledAttri',
+        explain: 'disabled属性字段名',
+        type: 'String',
+        defaultVal: 'disabled'
+      }, {
+        param: 'searchable',
+        explain: '是否可搜索',
+        type: 'boolean',
+        defaultVal: 'false'
+      }, {
+        param: 'searchPlaceholder',
+        explain: '搜索框占位符',
+        type: 'String',
+        defaultVal: '请输入搜索内容'
+      }, {
+        param: 'createOptionable',
+        explain: '是否可快捷创建选项',
+        type: 'boolean',
+        defaultVal: 'false'
+      }, {
+        param: 'loading',
+        explain: '是否加载中',
+        type: 'boolean',
+        defaultVal: 'false'
+      }],
+      tableDataEvents: [{
+        eventName: 'on-change',
+        explain: '选中值发生改变时触发',
+        returnParam: '目前选中值'
+      }, {
+        eventName: 'on-create-option',
+        explain: '新建选项时触发',
+        returnParam: '新选项label文案'
+      }]
     }
   },
   computed: {
@@ -248,7 +372,7 @@ export default {
   },
   methods: {
     selectChanged: function (values) {
-      console.log(values)
+      // console.log(values)
     },
     createOptionAction: function (newOptionVal) {
       setTimeout(() => {
@@ -257,6 +381,11 @@ export default {
           value: this.options.length + 1
         })
       }, 2000)
+    }
+  },
+  watch: {
+    'selectVal': function (newVal, oldVal) {
+      console.log(newVal, oldVal)
     }
   }
 }
