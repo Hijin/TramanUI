@@ -234,6 +234,14 @@ export default {
         eventName: 'on-create-option',
         explain: '新建选项时触发',
         returnParam: '新选项label文案'
+      }, {
+        eventName: 'on-remove-tag',
+        explain: '多选时取消选项触发',
+        returnParam: '消除的数据选项'
+      }, {
+        eventName: 'on-clear',
+        explain: '全部清除时触发',
+        returnParam: '目前选中值'
       }]
     }
   },

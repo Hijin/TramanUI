@@ -26,6 +26,10 @@ export default new Router({
       path: '/Select',
       name: 'Select',
       component: () => import('@/view/Select.vue')
+    }, {
+      path: '/Input',
+      name: 'Input',
+      component: () => import('@/view/Input.vue')
     }
   ]
 })

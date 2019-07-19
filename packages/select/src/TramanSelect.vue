@@ -54,6 +54,7 @@
                         class="tr-select-create-input"
                         @blur="cancelCreateOption"
                         @change="commitCreateOption"
+                        @keyup.enter.native="commitCreateOption"
                         v-show="showCreateOptionInput"
                         :disabled="loadingCreateOption">
                     <i class="el-icon-loading tr-create-option-input-suffix" slot="suffix" v-show="loadingCreateOption"></i>
@@ -170,7 +171,7 @@ export default {
         return item[this.valueAttri] === data
       })[0]
       removeTag.checked = false
-      this.$emit('on-removeTag', removeTag)
+      this.$emit('on-remove-tag', removeTag)
       this.checkedOption(removeTag)
     },
     clearTagAction: function () {

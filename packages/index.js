@@ -5,11 +5,13 @@
 import trCheckPop from './checkPop/index'
 import trPagination from './pagination/index'
 import trSelect from './select/index'
+import trInput from './input/index'
 
 const components = [
   trCheckPop,
   trPagination,
-  trSelect
+  trSelect,
+  trInput
 ]
 
 const install = function (Vue) {
@@ -28,7 +30,8 @@ export {
   install,
   trCheckPop,
   trPagination,
-  trSelect
+  trSelect,
+  trInput
 }
 
 // 支持全部引用

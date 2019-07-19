@@ -19,6 +19,9 @@ const menu = [
   }, {
     title: 'Select 选择器',
     path: '/Select'
+  }, {
+    title: 'Input 搜索',
+    path: '/Input'
   }
 ]
 
