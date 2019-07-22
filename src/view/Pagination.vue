@@ -26,8 +26,9 @@
                 <span class="m-l-10">{{showCode?'隐藏代码':'显示代码'}}</span>
             </div>
         </div>
+        <h3 class="m-t-50">Pagination Attributes</h3>
         <el-table
-                class="m-t-50"
+                class="m-t-20"
                 :data="tableData">
             <el-table-column
                     prop="param"
